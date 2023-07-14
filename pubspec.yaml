@@ -19,6 +19,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_svg: ^2.0.6
   flutter_screenutil: ^5.8.4
+  http: ^1.1.0
+  lottie: ^2.4.0
 
 dev_dependencies:
   flutter_test:
@@ -43,12 +45,40 @@ flutter:
 
 
   fonts:
-    - family: Inter
+
+    - family: IsonormD
       fonts:
-        - asset: assets/fonts/Inter.ttf
+        - asset: assets/fonts/IsonormD.ttf
           style: italic
 
-    - family: ARCENA
+
+    - family: inc
       fonts:
-        - asset: assets/fonts/ARCENA.ttf
-          style: italic
+        - asset: assets/fonts/inc.ttf
+
+
+
+    - family: incLt
+      fonts:
+        - asset: assets/fonts/incLt.ttf
+
+
+    - family: InriaSerif
+      fonts:
+        - asset: assets/fonts/InriaSerif-Bold.otf
+        - asset: assets/fonts/InriaSerif-BoldItalic.otf
+        - asset: assets/fonts/InriaSerif-Italic.otf
+        - asset: assets/fonts/InriaSerif-Light.otf
+        - asset: assets/fonts/InriaSerif-LightItalic.otf
+        - asset: assets/fonts/InriaSerif-Regular.otf
+
+
+
+    - family: bitstream
+      fonts:
+        - asset: assets/fonts/bitstream-iowan-old-style-black-bt-586c36e930225.ttf
+        - asset: assets/fonts/bitstream-iowan-old-style-black-italic-bt-586c378f12ca1.ttf
+        - asset: assets/fonts/bitstream-iowan-old-style-bold-bt-586c371d8d669.ttf
+        - asset: assets/fonts/bitstream-iowan-old-style-bold-italic-bt-586c37701cb62.ttf
+        - asset: assets/fonts/bitstream-iowan-old-style-bt-586c36a8d7712.ttf
+        - asset: assets/fonts/bitstream-iowan-old-style-italic-bt-586c3740dc396.ttf
