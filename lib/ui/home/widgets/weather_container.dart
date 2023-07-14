@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:login_screen_homework/utils/images.dart';
 
 class WeatherContainer extends StatelessWidget {
   const WeatherContainer({Key? key}) : super(key: key);
 
+  @override
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,20 +20,11 @@ class WeatherContainer extends StatelessWidget {
           ],
         ),
       ),
-      child: Stack(
-        children: [
-          Positioned(
-            top: 29,
-            left: 56,
-            right: 55,
-            height: 180,
-            child: Image.asset(
-              AppImages.map,
-              fit: BoxFit.contain,
-            ),
-          ),
-        ],
+      child: Image.asset(
+        AppImages.map,
+        fit: BoxFit.contain,
       ),
     );
   }
 }
+
