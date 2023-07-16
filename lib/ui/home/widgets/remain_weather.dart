@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
+
 
 class RemainWeather extends StatefulWidget {
-  const RemainWeather({Key? key, required this.text, required this.image, required this.speed}) : super(key: key);
+  const RemainWeather({Key? key, required this.text, required this.lottie, required this.speed}) : super(key: key);
 
   final String text;
-  final SvgPicture image;
+  final LottieBuilder lottie;
   final String speed;
 
   @override
@@ -14,7 +15,6 @@ class RemainWeather extends StatefulWidget {
 }
 
 class _RemainWeatherState extends State<RemainWeather> {
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,8 +34,16 @@ class _RemainWeatherState extends State<RemainWeather> {
         children: [
           Container(
             padding: EdgeInsets.only(top: 10),
-              child: widget.image),
-           Text(widget.text,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 20)),
+            child: widget.lottie,
+          ),
+          Text(
+            widget.text,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
+              fontSize: 20,
+            ),
+          ),
           Spacer(),
           Text(
             '${widget.speed}',
@@ -45,9 +53,10 @@ class _RemainWeatherState extends State<RemainWeather> {
               color: Colors.white,
             ),
           ),
-          SizedBox(width: 20,)
+          SizedBox(width: 20,),
         ],
       ),
     );
   }
 }
+

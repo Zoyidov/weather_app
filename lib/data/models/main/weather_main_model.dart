@@ -59,6 +59,6 @@ class WeatherMainModel {
   double? get minTemperature => main.minTemperature;
   double? get maxTemperature => main.maxTemperature;
   double? get feelsLikeTemperature => main.feelsLikeTemperature;
-  String? get description => description;
-  String? get icon => icon;
+  String? get description => weather.isNotEmpty ? weather[0].description : null;
+  String? get icon => weather.isNotEmpty ? weather[0].icon : null;
 }

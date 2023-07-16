@@ -1,28 +1,41 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:login_screen_homework/ui/show_modal_bottom_view/widget/daily_cantainer.dart';
 
-class ModalBottomView extends StatelessWidget {
-  const ModalBottomView({Key? key});
 
+class DailyWeatherScreen extends StatelessWidget {
+  DailyWeatherScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      child: CupertinoButton(
-        onPressed: () {
-          showCupertinoModalPopup(
-            context: context,
-            builder: (context) => CupertinoActionSheet(
-              actions: <Widget>[
-              ],
-              cancelButton: CupertinoActionSheetAction(
-                onPressed: () => Navigator.of(context).pop(),
-                child: Text('Cancel'),
+    return Padding(
+      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      child: Stack(
+        children: [
+          Container(
+            height: 250,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(20),
+                topLeft: Radius.circular(20),
               ),
+              color: Colors.white,
             ),
-          );
-        },
-        child: Text('Show Modal'),
+            child: ListView(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: Column(
+                    children: [
+                      SizedBox(height: 10,),
+                      Text('Tashkent',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),),
+                      SizedBox(height: 10),
+                      DailyWeather(),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -9,11 +9,12 @@ import 'package:login_screen_homework/utils/images.dart';
 import 'package:lottie/lottie.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
+import '../../data/models/main/lat_lon.dart';
 import '../../data/models/universal_data.dart';
 import '../../data/network/weather_provider.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key,}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -32,8 +33,8 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> fetchWeatherData() async {
     final response = await WeatherProvider.getMainWeatherDataByLatLong(
-      lon: 69.2163,
-      lat: 41.2646,
+        lon : 69.2163,
+        lat : 41.2646,
     );
 
     setState(() {
@@ -41,12 +42,21 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  Future<void> searchCity(String cityName) async {
+    final response = await WeatherProvider.getMainWeatherDataByQuery(query: cityName);
+
+    setState(() {
+      weatherData = response as UniversalData?;
+      isSearchClicked = false;
+    });
+  }
+
+
   void toggleSearchClicked() {
     setState(() {
       isSearchClicked = !isSearchClicked;
     });
   }
-
   @override
   Widget build(BuildContext context) {
     if (weatherData == null) {
@@ -86,61 +96,72 @@ class _HomePageState extends State<HomePage> {
             children: [
               Stack(
                 children: [
-                  Image.asset(AppImages.background, fit: BoxFit.cover),
-                    Center(
-                      child: isSearchClicked
-                          ? Padding(
-                            padding: const EdgeInsets.only(right: 40,left: 25,top: 50),
+                  Image.asset(AppImages.background, fit: BoxFit.cover,width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.height,),
+                  Center(
+                    child: isSearchClicked
+                        ? Padding(
+                      padding: const EdgeInsets.only(
+                          right: 40, left: 15, top: 62),
+                      child: Row(
+                        children: [
+                          ZoomTapAnimation(
+                          onTap: toggleSearchClicked,
+                          child: Icon(Icons.arrow_back_ios,color: Colors.white)),
+                          Expanded(
                             child: SearchField(
-                        hintText: 'Search',
-                        keyboardType: TextInputType.text,
-                        textInputAction: TextInputAction.search,
+                              hintText: 'Search',
+                              keyboardType: TextInputType.text,
+                              textInputAction: TextInputAction.search,
+                              onSearch: searchCity,
+                            ),
+                          ),
+                        ],
                       ),
-                          ) : Padding(
-                        padding: const EdgeInsets.only(top: 60),
-                        child: Text(
-                          "Locations",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 30,
-                              fontFamily: 'IsonormD',
-                              color: Colors.white),
-                        ),
+                    )
+                        : Padding(
+                      padding: const EdgeInsets.only(top: 60),
+                      child: Text(
+                        "Locations",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 30,
+                            fontFamily: 'IsonormD',
+                            color: Colors.white),
                       ),
                     ),
+                  ),
                   Positioned(
                     top: 60,
                     right: 0,
                     child: Row(
                       children: [
-                        IconButton(
-                          icon:  isSearchClicked
-                              ? Text(''):
-                          SvgPicture.asset(AppImages.search),
-                          onPressed: toggleSearchClicked,
-                        ),
+                        if (!isSearchClicked)
+                          IconButton(
+                            icon: SvgPicture.asset(AppImages.search),
+                            onPressed: toggleSearchClicked,
+                          ),
                         PopupMenuButton<String>(
-                            color: const Color(0xFF6223B4),
-                            icon: SvgPicture.asset(AppImages.more),
-                            itemBuilder: (BuildContext context) {
-                              return [
-                                PopupMenuItem<String>(
-                                  onTap: () {},
-                                  child: const Text(
-                                    'Map',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
+                          color: const Color(0xFF6223B4),
+                          icon: SvgPicture.asset(AppImages.more),
+                          itemBuilder: (BuildContext context) {
+                            return [
+                              PopupMenuItem<String>(
+                                onTap: () {},
+                                child: const Text(
+                                  'Map',
+                                  style: TextStyle(color: Colors.white),
                                 ),
-                                PopupMenuItem<String>(
-                                  onTap: () {},
-                                  child: const Text(
-                                    'My Location',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                )
-                              ];
-                            })
-                        // Icon(Icons.more_vert, color: Colors.white, size: 35)
+                              ),
+                              PopupMenuItem<String>(
+                                onTap: () {},
+                                child: const Text(
+                                  'My Location',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              )
+                            ];
+                          },
+                        ),
                       ],
                     ),
                   ),
@@ -161,8 +182,7 @@ class _HomePageState extends State<HomePage> {
                                     actions: <Widget>[
                                       Lottie.asset(AppImages.maps),
                                     ],
-                                    cancelButton:
-                                    CupertinoActionSheetAction(
+                                    cancelButton: CupertinoActionSheetAction(
                                       onPressed: () =>
                                           Navigator.of(context).pop(),
                                       child: const Text(
@@ -216,7 +236,6 @@ class _HomePageState extends State<HomePage> {
                         Image.network(
                           "https://openweathermap.org/img/wn/${weatherData?.data?.weather.first.icon}@2x.png",
                         ),
-
                         // Lottie.asset(AppImages.clouds,height: 100,width: 100),
                         Text(
                           '${(weatherData?.data?.temperature ?? 0).toInt() - 273}°',
@@ -252,8 +271,6 @@ class _HomePageState extends State<HomePage> {
                             fontFamily: 'bitstream',
                             fontSize: 30,
                             fontWeight: FontWeight.w600,
-
-
                             color: Colors.white,
                           ),
                         ),
@@ -261,10 +278,12 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Positioned(
-                    top: 400,
+                    top: 420,
                     left: 31,
                     right: 31,
-                    child: WeatherContainer(),
+                    child: WeatherContainer(
+                      image: AssetImage(AppImages.map),
+                    )
                   ),
                   Positioned(
                     top: 260,
@@ -274,7 +293,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Positioned(
-                    top: 610,
+                    top: 650,
                     left: 31,
                     right: 31,
                     bottom: 0,
@@ -283,24 +302,24 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           RemainWeather(
                             text: 'RainFall',
-                            image: SvgPicture.asset(AppImages.rainfall,height: 100),
-                            speed: '${(weatherData?.data?.wind.speed?? 0).toInt()+5} sm'
+                            lottie: Lottie.asset(AppImages.rainfall,height: 60),
+                            speed:
+                            '${(weatherData?.data?.wind.speed ?? 0).toInt() + 5} sm',
                           ),
                           const SizedBox(height: 20),
                           RemainWeather(
                             text: 'Wind',
-                            image: SvgPicture.asset(AppImages.wind,height: 100),
-                            speed:
-                            '${weatherData?.data?.wind.speed} km/h',
+                            lottie: Lottie.asset(AppImages.wind,height: 60),
+                            speed: '${weatherData?.data?.wind.speed} km/h',
                           ),
                           const SizedBox(height: 20),
                           RemainWeather(
                             text: 'Humidity',
-                            image: SvgPicture.asset(AppImages.humidity,height: 60),
+                            lottie: Lottie.asset(AppImages.humidity,height: 60),
                             speed:
                             '${weatherData?.data?.main.humidity} %',
                           ),
-                          SizedBox(height: 50,)
+                          SizedBox(height: 50),
                         ],
                       ),
                     ),

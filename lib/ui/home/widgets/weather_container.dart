@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:login_screen_homework/utils/images.dart';
+import 'package:zoom_tap_animation/zoom_tap_animation.dart';
+
+import '../../show_modal_bottom_view/show_modal_bottom_view.dart';
 
 class WeatherContainer extends StatelessWidget {
-  const WeatherContainer({Key? key}) : super(key: key);
+  const WeatherContainer({Key? key, this.image}) : super(key: key);
 
-  @override
+  final ImageProvider? image;
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 197,
+      height: 200,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(14),
         gradient: LinearGradient(
@@ -20,11 +23,22 @@ class WeatherContainer extends StatelessWidget {
           ],
         ),
       ),
-      child: Image.asset(
-        AppImages.map,
-        fit: BoxFit.contain,
+      child: ZoomTapAnimation(
+        onTap: () {
+          showModalBottomSheet(
+            isScrollControlled: true,
+            clipBehavior: Clip.hardEdge,
+            backgroundColor: Colors.transparent,
+            context: context,
+            builder: (context) {
+              return DailyWeatherScreen();
+            },
+          );
+        },
+        child: image != null
+            ? Image(image: image!, fit: BoxFit.contain)
+            : SizedBox(), // Placeholder widget if image is not provided
       ),
     );
   }
 }
-

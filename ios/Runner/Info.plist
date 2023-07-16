@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Default Only Project</string>
+	<string>Weather Forecast</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -47,5 +47,10 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+
+		<key>NSLocationWhenInUseUsageDescription</key>
+		<string>Your location has been required</string>
+		<key>NSLocationAlwaysUsageDescription</key>
+		<string>Your location has been required</string>
 </dict>
 </plist>
