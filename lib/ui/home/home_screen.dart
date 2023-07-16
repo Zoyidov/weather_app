@@ -287,6 +287,8 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Positioned(
                     top: 260,
+                    right: 0,
+                    left: 0,
                     child: SvgPicture.asset(
                       AppImages.line,
                       fit: BoxFit.contain,

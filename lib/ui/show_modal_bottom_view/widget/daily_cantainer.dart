@@ -35,9 +35,9 @@ class _DailyWeatherState extends State<DailyWeather> {
           ? Center(child: CupertinoActivityIndicator(color: Colors.white,radius: 15,))
           : ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: (weatherData?.daily.length ?? 0),
+        itemCount: (weatherData?.daily.length ?? 1)-1,
         itemBuilder: (BuildContext context, int index) {
-          final dailyWeather = weatherData?.daily[index];
+          final dailyWeather = weatherData?.daily[index+1];
           final dayOfWeek = getDayOfWeek(dailyWeather?.dt);
           final temperature = dailyWeather?.temp.day.toInt() ?? '';
 
@@ -117,13 +117,12 @@ class _DailyWeatherState extends State<DailyWeather> {
         final jsonData = json.decode(response.body);
         setState(() {
           weatherData = Welcome.fromJson(jsonData);
-          isLoading = false; // Data has been loaded
+          isLoading = false;
         });
       } else {
         throw Exception('Failed to fetch data');
       }
     } catch (e) {
-      print('Error: $e');
     }
   }
 }

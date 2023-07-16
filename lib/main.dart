@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_screen_homework/ui/home/home_screen.dart';
-import 'package:login_screen_homework/ui/welcome/splash.dart';
+import 'package:login_screen_homework/ui/location/location.dart';
 
 
 
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: LocationAccess(),
     );
   }
 }
