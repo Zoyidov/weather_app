@@ -20,7 +20,7 @@ class SearchField extends StatefulWidget {
 
 
 class _SearchFieldState extends State<SearchField> {
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
 
   @override
   void dispose() {
@@ -39,28 +39,28 @@ class _SearchFieldState extends State<SearchField> {
         SizedBox(
           height: 40,
           child: TextField(
-            style: TextStyle(color: Colors.white,fontSize: 20),
+            style: const TextStyle(color: Colors.white,fontSize: 20),
             controller: _controller,
             cursorColor: Colors.white,
             decoration: InputDecoration(
               contentPadding:
-              EdgeInsets.only(left: 16, top: 0, right: 20, bottom: 0),
+              const EdgeInsets.only(left: 16, top: 0, right: 20, bottom: 0),
               hintText: widget.hintText,
-              hintStyle: TextStyle(color: Colors.white),
+              hintStyle: const TextStyle(color: Colors.white),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.white, width: 1),
+                borderSide: const BorderSide(color: Colors.white, width: 1),
                 borderRadius: BorderRadius.circular(16),
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.white, width: 1),
+                borderSide: const BorderSide(color: Colors.white, width: 1),
                 borderRadius: BorderRadius.circular(16),
               ),
               errorBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.red, width: 1),
+                borderSide: const BorderSide(color: Colors.red, width: 1),
                 borderRadius: BorderRadius.circular(16),
               ),
               border: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey, width: 1),
+                borderSide: const BorderSide(color: Colors.grey, width: 1),
                 borderRadius: BorderRadius.circular(16),
               ),
             ),

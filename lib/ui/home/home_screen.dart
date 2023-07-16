@@ -9,7 +9,6 @@ import 'package:login_screen_homework/utils/images.dart';
 import 'package:lottie/lottie.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
-import '../../data/models/main/lat_lon.dart';
 import '../../data/models/universal_data.dart';
 import '../../data/network/weather_provider.dart';
 
@@ -60,21 +59,21 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     if (weatherData == null) {
-      return Scaffold(
-        backgroundColor: const Color(0xFF6223B4),
+      return const Scaffold(
+        backgroundColor: Color(0xFF6223B4),
         body: Center(
           child: Column(
             children: [
-              const SizedBox(height: 300),
-              const Text(
+              SizedBox(height: 300),
+              Text(
                 "Fetching Weather data...",
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
                     fontWeight: FontWeight.w600),
               ),
-              const SizedBox(height: 50),
-              const CupertinoActivityIndicator(
+              SizedBox(height: 50),
+              CupertinoActivityIndicator(
                 color: Colors.white,
                 radius: 20,
               ),
@@ -106,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           ZoomTapAnimation(
                           onTap: toggleSearchClicked,
-                          child: Icon(Icons.arrow_back_ios,color: Colors.white)),
+                          child: const Icon(Icons.arrow_back_ios,color: Colors.white)),
                           Expanded(
                             child: SearchField(
                               hintText: 'Search',
@@ -118,8 +117,8 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                     )
-                        : Padding(
-                      padding: const EdgeInsets.only(top: 60),
+                        : const Padding(
+                      padding: EdgeInsets.only(top: 60),
                       child: Text(
                         "Locations",
                         style: TextStyle(
@@ -277,7 +276,7 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
-                  Positioned(
+                  const Positioned(
                     top: 420,
                     left: 31,
                     right: 31,
@@ -321,7 +320,7 @@ class _HomePageState extends State<HomePage> {
                             speed:
                             '${weatherData?.data?.main.humidity} %',
                           ),
-                          SizedBox(height: 50),
+                          const SizedBox(height: 50),
                         ],
                       ),
                     ),

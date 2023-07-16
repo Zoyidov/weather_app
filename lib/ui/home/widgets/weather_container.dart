@@ -18,8 +18,8 @@ class WeatherContainer extends StatelessWidget {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            Color(0xFF7730F6).withOpacity(0.83),
-            Color(0xFF000000).withOpacity(0.0083),
+            const Color(0xFF7730F6).withOpacity(0.83),
+            const Color(0xFF000000).withOpacity(0.0083),
           ],
         ),
       ),
@@ -37,7 +37,7 @@ class WeatherContainer extends StatelessWidget {
         },
         child: image != null
             ? Image(image: image!, fit: BoxFit.contain)
-            : SizedBox(), // Placeholder widget if image is not provided
+            : const SizedBox(), // Placeholder widget if image is not provided
       ),
     );
   }

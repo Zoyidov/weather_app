@@ -83,5 +83,4 @@ class _LocationAccessState extends State<LocationAccess> {
       ),
     );
   }
-
 }

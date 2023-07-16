@@ -32,7 +32,7 @@ class _DailyWeatherState extends State<DailyWeather> {
         color: const Color(0xFF6223B4).withOpacity(0.9),
       ),
       child: isLoading
-          ? Center(child: CupertinoActivityIndicator(color: Colors.white,radius: 15,))
+          ? const Center(child: CupertinoActivityIndicator(color: Colors.white,radius: 15,))
           : ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: (weatherData?.daily.length ?? 1)-1,
@@ -109,8 +109,7 @@ class _DailyWeatherState extends State<DailyWeather> {
   }
 
   Future<void> fetchData() async {
-    final url =
-        'https://api.openweathermap.org/data/2.5/onecall?lat=41.2646&lon=69.2163&units=metric&exclude=hourly,current,minutely&appid=139d82d53b7f20c0a44c1bc27377f9ff';
+    const url = 'https://api.openweathermap.org/data/2.5/onecall?lat=41.2646&lon=69.2163&units=metric&exclude=hourly,current,minutely&appid=139d82d53b7f20c0a44c1bc27377f9ff';
     try {
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {

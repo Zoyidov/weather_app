@@ -3,7 +3,7 @@ import 'package:login_screen_homework/ui/show_modal_bottom_view/widget/daily_can
 
 
 class DailyWeatherScreen extends StatelessWidget {
-  DailyWeatherScreen({Key? key}) : super(key: key);
+  const DailyWeatherScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -12,7 +12,7 @@ class DailyWeatherScreen extends StatelessWidget {
         children: [
           Container(
             height: 250,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(20),
                 topLeft: Radius.circular(20),
@@ -20,9 +20,9 @@ class DailyWeatherScreen extends StatelessWidget {
               color: Colors.white,
             ),
             child: ListView(
-              children: [
+              children: const [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  padding: EdgeInsets.symmetric(horizontal: 15),
                   child: Column(
                     children: [
                       SizedBox(height: 10,),
