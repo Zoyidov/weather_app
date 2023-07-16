@@ -33,12 +33,12 @@ class _MyAppState extends State<MyApp> {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const CircularProgressIndicator();
         } else if (snapshot.hasData && snapshot.data!) {
-          return MaterialApp(
+          return const MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: const LocationAccess(),
+            home: LocationAccess(),
           );
         } else {
-          return MaterialApp(
+          return const MaterialApp(
             debugShowCheckedModeBanner: false,
             home: HomePage(),
           );
