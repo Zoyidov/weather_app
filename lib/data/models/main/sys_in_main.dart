@@ -13,7 +13,7 @@ class SysInMain {
     required this.sunset,
   });
 
-  factory SysInMain.fromJson(Map<String, Object?> json) {
+  factory SysInMain.fromJson(Map<String, dynamic> json) {
     return SysInMain(
       id: json["id"] as int? ?? 0,
       type: json["type"] as int? ?? 0,

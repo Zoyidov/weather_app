@@ -9,7 +9,7 @@ class WindInMain {
     required this.speed,
   });
 
-  factory WindInMain.fromJson(Map<String, Object?> json) {
+  factory WindInMain.fromJson(Map<String, dynamic> json) {
     return WindInMain(
       deg: json["deg"] as int? ?? 0,
       gust: json["gust"] as double? ?? 0.0,

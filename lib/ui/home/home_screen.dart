@@ -9,11 +9,14 @@ import 'package:login_screen_homework/utils/images.dart';
 import 'package:lottie/lottie.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
+import '../../data/models/main/lat_lon.dart';
 import '../../data/models/universal_data.dart';
 import '../../data/network/weather_provider.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key,}) : super(key: key);
+   HomePage({Key? key, required this.latLong,}) : super(key: key);
+
+   final LatLong latLong;
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -32,8 +35,8 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> fetchWeatherData() async {
     final response = await WeatherProvider.getMainWeatherDataByLatLong(
-        lon : 69.2163,
-        lat : 41.2646,
+        lon : widget.latLong.long,
+        lat : widget.latLong.lat,
     );
 
     setState(() {
@@ -235,7 +238,7 @@ class _HomePageState extends State<HomePage> {
                         Image.network(
                           "https://openweathermap.org/img/wn/${weatherData?.data?.weather.first.icon}@2x.png",
                         ),
-                        // Lottie.asset(AppImages.clouds,height: 100,width: 100),
+                        // Lottie.asset(AppImages.cloud,height: 100,width: 100),
                         Text(
                           '${(weatherData?.data?.temperature ?? 0).toInt() - 273}°',
                           style: const TextStyle(
@@ -276,12 +279,14 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
-                  const Positioned(
+                  Positioned(
                     top: 420,
                     left: 31,
                     right: 31,
                     child: WeatherContainer(
                       image: AssetImage(AppImages.map),
+                      lat: widget.latLong.lat,
+                      lon: widget.latLong.long,
                     )
                   ),
                   Positioned(

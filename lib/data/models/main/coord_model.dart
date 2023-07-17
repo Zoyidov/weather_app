@@ -9,8 +9,8 @@ class CoordModel {
 
   factory CoordModel.fromJson(Map<String, dynamic> json) {
     return CoordModel(
-      lat: json["lat"].toDouble(),
-      lon: json["lon"].toDouble(),
+      lat: (json['lat'] as num?)?.toDouble() ?? 0.0,
+      lon: (json['lon'] as num?)?.toDouble() ?? 0.0,
     );
   }
 }

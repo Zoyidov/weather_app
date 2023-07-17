@@ -32,7 +32,6 @@ class _SearchFieldState extends State<SearchField> {
   Widget build(BuildContext context) {
     _controller.addListener(() {
     });
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

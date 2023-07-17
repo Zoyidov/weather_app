@@ -7,7 +7,6 @@ import 'wind_in_main.dart';
 class WeatherMainModel {
   final CoordModel coord;
   final List<WeatherModel> weather;
-  final String base;
   final MainInMain main;
   final int visibility;
   final WindInMain wind;
@@ -16,6 +15,7 @@ class WeatherMainModel {
   final SysInMain sys;
   final int timezone;
   final int id;
+  final String base;
   final String name;
   final int cod;
 
@@ -46,9 +46,9 @@ class WeatherMainModel {
       dt: json["dt"],
       base: json["base"],
       clouds: json["clouds"]["all"],
-      main: MainInMain.fromJson(json["main"]),
       timezone: json["timezone"],
       visibility: json["visibility"],
+      main: MainInMain.fromJson(json["main"]),
       weather: (json["weather"] as List)
           .map((e) => WeatherModel.fromJson(e))
           .toList(),

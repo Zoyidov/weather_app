@@ -56,7 +56,7 @@ class _LocationAccessState extends State<LocationAccess> {
 
     if (context.mounted) {
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-        return HomePage();
+        return HomePage(latLong: latLong!);
       }));
     }
   }

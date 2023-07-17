@@ -4,7 +4,9 @@ import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 import '../../show_modal_bottom_view/show_modal_bottom_view.dart';
 
 class WeatherContainer extends StatelessWidget {
-  const WeatherContainer({Key? key, this.image}) : super(key: key);
+  WeatherContainer({Key? key, this.image,required this.lon,required this.lat}) : super(key: key);
+  double lat;
+  double lon;
 
   final ImageProvider? image;
 
@@ -31,7 +33,7 @@ class WeatherContainer extends StatelessWidget {
             backgroundColor: Colors.transparent,
             context: context,
             builder: (context) {
-              return DailyWeatherScreen();
+              return DailyWeatherScreen(lat: lat, lon: lon,);
             },
           );
         },

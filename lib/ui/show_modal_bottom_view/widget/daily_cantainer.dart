@@ -7,7 +7,9 @@ import '../../../data/models/main/weakly_weather_model.dart';
 
 
 class DailyWeather extends StatefulWidget {
-  const DailyWeather({Key? key}) : super(key: key);
+  DailyWeather({Key? key,required this.lat,required this.lon}) : super(key: key);
+  double lat;
+  double lon;
 
   @override
   _DailyWeatherState createState() => _DailyWeatherState();
@@ -20,7 +22,7 @@ class _DailyWeatherState extends State<DailyWeather> {
   @override
   void initState() {
     super.initState();
-    fetchData();
+    fetchData(widget.lat.toString(),widget.lon.toString());
   }
 
   @override
@@ -66,7 +68,6 @@ class _DailyWeatherState extends State<DailyWeather> {
                     fontSize: 16,
                   ),
                 ),
-                const SizedBox(height: 4),
                 if (dailyWeather?.weather.isNotEmpty ?? false)
                   Image.network(
                     weatherIconUrl,
@@ -108,8 +109,11 @@ class _DailyWeatherState extends State<DailyWeather> {
     }
   }
 
-  Future<void> fetchData() async {
-    const url = 'https://api.openweathermap.org/data/2.5/onecall?lat=41.2646&lon=69.2163&units=metric&exclude=hourly,current,minutely&appid=139d82d53b7f20c0a44c1bc27377f9ff';
+  Future<void> fetchData(
+      String lat,
+      String lon,
+      ) async {
+    final url = 'https://api.openweathermap.org/data/2.5/onecall?lat=$lat&lon=$lon&units=metric&exclude=hourly,current,minutely&appid=649ff9f2558d2c45135158b30bc262d8';
     try {
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
